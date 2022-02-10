@@ -54,7 +54,7 @@ export function UserIdentification() {
               <View style={styles.header}>
                 <Text style={styles.emoji}>{isNameFilled ? "😄" : "😃"}</Text>
 
-                <Text style={styles.title} placeholder="Enter a name">
+                <Text style={styles.title}>
                   How can {"\n"} we call you?
                 </Text>
               </View>
@@ -64,6 +64,7 @@ export function UserIdentification() {
                   styles.input,
                   (isFocused || isNameFilled) && { borderColor: colors.green },
                 ]}
+                placeholder="Enter a name"
                 onChangeText={handleNameInputChange}
                 onBlur={handleInputBlur}
                 onFocus={handleInputFocus}
