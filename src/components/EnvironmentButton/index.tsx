@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { Text, StyleSheet } from "react-native";
 import { RectButton, RectButtonProps } from "react-native-gesture-handler";
 
 interface EnvironmentButtonProps extends RectButtonProps {
@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
     marginRight: 5,
   },
   containerActive: {
-    backgroundColor: colors.green_dark,
+    backgroundColor: colors.green_light,
   }, 
   text: {
     color: colors.heading,
