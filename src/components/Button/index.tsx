@@ -13,10 +13,10 @@ interface ButtonProps extends TouchableOpacityProps {
   text: string;
 }
 
-export function Button({ text, ...rest }: ButtonProps) {
+export function Button({ text, disabled, ...rest }: ButtonProps) {
   return (
-    <TouchableOpacity style={styles.container} {...rest}>
-      <Text style={styles.text}>{text}</Text>
+    <TouchableOpacity style={[styles.container, disabled && styles.buttonisDisabled]} {...rest}>
+      <Text style={[styles.text, disabled && styles.textButtonIsDisabled]}>{text}</Text>
     </TouchableOpacity>
   );
 }
@@ -29,9 +29,15 @@ export const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
+  buttonisDisabled: {
+    backgroundColor: colors.gray,
+  },
   text: {
     fontSize: 16,
     color: colors.white,
     fontFamily: fonts.heading,
+  },
+  textButtonIsDisabled: {
+    color: 'black'
   },
 });

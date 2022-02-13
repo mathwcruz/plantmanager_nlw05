@@ -11,6 +11,7 @@ import {
   Platform,
   Keyboard,
 } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import { Button } from "../components/Button";
 
@@ -24,7 +25,10 @@ export function UserIdentification() {
   const [isNameFilled, setIsNameFilled] = useState<boolean>(false);
   const [name, setName] = useState<string>("");
 
-  function handleConfirm() {
+  async function handleConfirm() {
+    // saving user name on async storage
+    await AsyncStorage.setItem('@plantmanager:userName', name);
+
     navigation.navigate("Confirmation");
   }
 
@@ -71,8 +75,9 @@ export function UserIdentification() {
               />
               <View style={styles.footer}>
                 <Button
-                  text="Confirmar"
+                  text="Confirm"
                   onPress={() => isNameFilled && handleConfirm()}
+                  disabled={!isNameFilled}
                 />
               </View>
             </View>

@@ -18,7 +18,7 @@ import fonts from "../styles/fonts";
 export function Welcome() {
   const navigation = useNavigation();
 
-  function handleStart() {
+  async function handleStart() {
     navigation.navigate("UserIdentification");
   }
 
