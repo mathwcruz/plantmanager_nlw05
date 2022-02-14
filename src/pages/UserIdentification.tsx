@@ -10,6 +10,7 @@ import {
   TouchableWithoutFeedback,
   Platform,
   Keyboard,
+  Alert,
 } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
@@ -27,9 +28,18 @@ export function UserIdentification() {
 
   async function handleConfirm() {
     // saving user name on async storage
-    await AsyncStorage.setItem('@plantmanager:userName', name);
-
-    navigation.navigate("Confirmation");
+    try {
+      await AsyncStorage.setItem('@plantmanager:userName', name);
+      navigation.navigate("Confirmation", { 
+        title: "Ready",
+        subtitle: "Now let's start taking care of your plants very carefully",
+        buttonTitle: "Start",
+        icon: "smile",
+        nextScreen: "PlantSelect",
+      });
+    } catch (error) {
+      Alert.alert('Could not save your name')
+    }
   }
 
   function handleInputBlur() {

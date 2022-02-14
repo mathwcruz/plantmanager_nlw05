@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import { View, Text, Alert, Image, ScrollView, Platform, TouchableOpacity, StyleSheet } from "react-native";
 import { getBottomSpace } from "react-native-iphone-x-helper";
-import { useRoute } from '@react-navigation/core';
+import { useNavigation, useRoute } from '@react-navigation/core';
 import DateTimePicker, { Event } from '@react-native-community/datetimepicker';
 import { SvgFromUri } from "react-native-svg"
 import { format, isBefore } from "date-fns";
 
 import { Button } from "../components/Button";
 
-import { PlantProps } from "../libs/storage";
+import { PlantProps, savePlant, getPlants } from "../libs/storage";
 
 import waterDropImagem from "../assets/waterdrop.png";
 import colors from "../styles/colors";
@@ -19,8 +19,9 @@ interface Params {
 }
 
 export function PlantSave() {
-  const route = useRoute();
+  const navigation = useNavigation();
 
+  const route = useRoute();
   const { plant } = route?.params as Params;
 
   const [dateTimeSelected, setDateTimeSelected] = useState(new Date());
@@ -44,6 +45,25 @@ export function PlantSave() {
 
   function handleOpenDateTimePickerOnAndroid() {
     setShowDateTimePicker((old) => !old);
+  }
+
+  async function handleSavePlant() {
+    try {
+      await savePlant({
+        ...plant,
+        dateTimeNotification: dateTimeSelected,
+      })
+
+      navigation.navigate("Confirmation", { 
+        title: "All right",
+        subtitle: "Rest assured that we will always remind you to take care of your little plant very carefully",
+        buttonTitle: "Thank you",
+        icon: "hug",
+        nextScreen: "MyPlants",
+      })
+    } catch (error) {
+      return Alert.alert("Could not save this plant");
+    }
   }
 
   return (
@@ -72,7 +92,7 @@ export function PlantSave() {
           </TouchableOpacity>
         )}
 
-        <Button text="Register plant" onPress={() => {}} />
+        <Button text="Register plant" onPress={handleSavePlant} />
       </View>
     </View>
   );
