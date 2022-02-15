@@ -7,11 +7,11 @@
 
 
 <p align="center">
-  <a href="#computer-demonstration-of-the-application-mobile-layout">Demonstration of the application</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#demonstration-of-the-application">Demonstration of the application</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#rocket-technologies-used">Technologies used</a>&nbsp;&nbsp;&nbsp;
 </p>
 
-# 📱 Demonstration of the application Mobile Layout
+# Demonstration of the application
 
 <p align="center">
   <img src="./.github/demonstration.gif" width="300px"/>
