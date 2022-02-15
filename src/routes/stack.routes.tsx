@@ -1,12 +1,10 @@
 import React from 'react';
 import  { createStackNavigator } from '@react-navigation/stack';
 
-import { Welcome } from '../pages/Welcome';
-import { UserIdentification } from '../pages/UserIdentification';
 import { Confirmation } from '../pages/Confirmation';
-import { PlantSelect } from '../pages/PlantSelect';
 import { PlantSave } from '../pages/PlantSave';
-import { MyPlants } from '../pages/MyPlants';
+import { UserIdentification } from '../pages/UserIdentification';
+import { Welcome } from '../pages/Welcome';
 
 import colors from '../styles/colors';
 import AuthRoutes from './tab.routes';

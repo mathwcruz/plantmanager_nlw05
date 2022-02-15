@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, View, Text, Image } from "react-native";
+import { StyleSheet, View, Text, Image, Alert } from "react-native";
 import { FlatList } from "react-native-gesture-handler";
 import { formatDistance } from "date-fns";
 import { enUS } from "date-fns/locale";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
 
 import { Header } from "../components/Header";
+import { Loader } from "../components/Loader";
 import { PlantCardSecondary } from "../components/PlantCardSecondary";
 
-import { PlantProps, getPlants } from "../libs/storage";
+import { getPlants, removePlant, PlantProps } from "../libs/storage";
 
 import waterDropImage from "../assets/waterdrop.png";
 
@@ -19,14 +22,47 @@ export function MyPlants() {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [nextWater, setNextWater] = useState<string>("");
 
+  function handleRemovePlant(plant: PlantProps) {
+    Alert.alert("Remove plant", `Do you want to remove ${plant.name}?`, [
+      {
+        text: 'No',
+        style: 'cancel',
+      },
+      {
+        text: 'Yes',
+        onPress: async () => {
+          try {
+            setIsLoading(true);
+            await removePlant(plant?.id);
+
+            setMyPlants((old) => old?.filter((data) => data?.id !== plant?.id));
+            setTimeout(() => setIsLoading(false), 350);
+          } catch (error) {
+            Alert.alert("There was a problem trying to remove this plant, please try again")
+          }
+        }
+      }
+    ])
+  }
+
+  useEffect(() => console.log({ myPlants, isLoading }), [myPlants, isLoading])
+
   async function loadPlantsFromStorage() {
     setIsLoading(true);
     const plantsStoraged = await getPlants();
 
-    const nextTime = formatDistance(new Date(plantsStoraged?.[0]?.dateTimeNotification)?.getTime(), new Date()?.getTime(), { locale: enUS });
-
-    setNextWater(`Don't forget to water the ${plantsStoraged?.[0]?.name} at ${nextTime}`);
-    setMyPlants(plantsStoraged);
+    if (plantsStoraged?.length > 0) {
+      const nextTime = formatDistance(
+        new Date(plantsStoraged[0].dateTimeNotification).getTime(),
+        new Date().getTime(),
+        { locale: enUS }
+      );
+  
+      setNextWater(`Don't forget to water the ${plantsStoraged?.[0]?.name} at ${nextTime}`);
+      setMyPlants(plantsStoraged);
+      setTimeout(() => setIsLoading(false), 450);
+    }
+    
     setIsLoading(false);
   }
 
@@ -35,26 +71,37 @@ export function MyPlants() {
   }, []);
 
   return (
-    <View style={styles.container}>
-      <Header />
-      <View style={styles.spotlightContainer}>
-        <Image source={waterDropImage} style={styles.spotlightImage} />
-        <Text style={styles.spotlightText}>{nextWater}</Text>
-      </View>
-
-      <View style={styles.plantsContainer}>
-        <Text style={styles.plantsTitle}>Next watering</Text>
-        <FlatList 
-          data={myPlants}
-          keyExtractor={(item) => String(item?.id)}
-          renderItem={({ item }) => (
-           <PlantCardSecondary data={item} />
-          )}
-          showsVerticalScrollIndicator={false}
-          contentContainerStyle={{ flex: 1 }}
-        />
-      </View>
-    </View>
+   <>
+    {isLoading ? (
+      <Loader />
+    ) : (
+      <>
+        {!myPlants?.length ? (
+           <Loader text={!myPlants?.length ? "You don't have registered plants yet" : ""} />
+        ) : (
+          <View style={styles.container}>
+            <Header />
+            <View style={styles.spotlightContainer}>
+              <Image source={waterDropImage} style={styles.spotlightImage} />
+              <Text style={styles.spotlightText}>{nextWater}</Text>
+             </View>
+              
+            <View style={styles.plantsContainer}>
+              <Text style={styles.plantsTitle}>Next watering</Text>
+              <FlatList 
+                data={myPlants}
+                 keyExtractor={(item) => String(item?.id)}
+                 renderItem={({ item }) => (
+                  <PlantCardSecondary data={item} handleRemovePlant={() => handleRemovePlant(item)} />
+                 )}
+                 showsVerticalScrollIndicator={false}
+              />
+            </View>
+          </View>
+        )}
+      </>
+    )}
+   </>
   );
 }
 

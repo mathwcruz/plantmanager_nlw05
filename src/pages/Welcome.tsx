@@ -10,6 +10,7 @@ import {
   Dimensions,
 } from "react-native";
 import { Feather } from "@expo/vector-icons";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import welcomeImg from "../assets/watering.png";
 import colors from "../styles/colors";
@@ -19,7 +20,8 @@ export function Welcome() {
   const navigation = useNavigation();
 
   async function handleStart() {
-    navigation.navigate("UserIdentification");
+    const userName = await AsyncStorage.getItem("@plantmanager:userName");
+      navigation.navigate(!userName ? "UserIdentification" : "PlantSelect");
   }
 
   return (
@@ -63,7 +65,6 @@ const styles = StyleSheet.create({
     fontFamily: fonts.heading,
     lineHeight: 34,
     fontSize: 28,
-    fontWeight: "bold",
     textAlign: "center",
     color: colors.heading,
     marginTop: 38,

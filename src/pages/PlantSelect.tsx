@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, FlatList, ActivityIndicator } from "react-native";
+import { View, Text, StyleSheet, FlatList, ActivityIndicator, Alert } from "react-native";
 import { useNavigation } from '@react-navigation/core';
 
 import { EnvironmentButton } from '../components/EnvironmentButton';
@@ -31,33 +31,42 @@ export function PlantSelect() {
 
   const navigation = useNavigation();
 
-  const getPlantsEnvironments = async () => {
-    const { data: plantsEnvironments } = await api.get('plants_environments?_sort=title&_order=asc');
+  async function getPlantsEnvironments() {
+    try {
+      const { data: plantsEnvironments } = await api.get('plants_environments?_sort=title&_order=asc');
 
-    setEnvironments([{
-      key: 'all',
-      title: 'All'
-    }, ...plantsEnvironments])
+      setEnvironments([{
+        key: 'all',
+        title: 'All'
+      }, ...plantsEnvironments])
+    } catch (error) {
+      Alert.alert("It was not possible to recover the environments of the plants");
+    }
   }
 
-  const getPlants = async () => {
-    const { data: plants } = await api.get(`plants?_sort=name&_order=asc&_page=${page}&_limit=8`);
+  async function getPlants() {
+    try {
+      const { data: plants } = await api.get(`plants?_sort=name&_order=asc&_page=${page}&_limit=8`);
 
-    if (!plants) {
-      return setIsLoading(true);
+      if (!plants) {
+        return setIsLoading(true);
+      }
+  
+      if (page > 1) {
+        setPlants((old) => [...old, ...plants]);
+        setPlantsFiltered((old) => [...old, ...plants]);
+      } else {
+        setPlants(plants);
+        setPlantsFiltered(plants);
+      }
+  
+      setIsLoading(false);
+      setHasMorePlantsToLoad(false);
+    } catch (error) {
+      Alert.alert("It was not possible to recover the plants list");
     }
-
-    if (page > 1) {
-      setPlants((old) => [...old, ...plants]);
-      setPlantsFiltered((old) => [...old, ...plants]);
-    } else {
-      setPlants(plants);
-      setPlantsFiltered(plants);
-    }
-
-    setIsLoading(false);
-    setHasMorePlantsToLoad(false);
   }
+
 
   function handleEnvironmentSelected(environment: string) {
     setEnvironmentSelected(environment);
@@ -157,7 +166,8 @@ const styles = StyleSheet.create({
     height: 40,
     justifyContent: 'center',
     paddingBottom: 5,
-    marginLeft: 32,
+    paddingLeft: 32,
+    paddingRight: 5,
     marginVertical: 32,
   },
   plants: {
