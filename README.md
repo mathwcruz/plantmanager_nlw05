@@ -25,6 +25,16 @@
 
 <p>&nbsp;</p>
 
+## :star: Features
+- [x] User identification
+- [x] List of environments for the plant
+- [x] List of plants
+- [x] Listing based on filters
+- [x] Adding a new plant to be reminded to water it
+- [x] Get notified to water your plant
+- [x] List of your plants
+- [x] Remove a plant from your list
+
 ## :rocket: Technologies used:
 
 <p align="center">
