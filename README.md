@@ -8,6 +8,7 @@
 
 <p align="center">
   <a href="#demonstration-of-the-application">Demonstration of the application</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#star-features">Features</a>&nbsp;&nbsp;&nbsp;
   <a href="#rocket-technologies-used">Technologies used</a>&nbsp;&nbsp;&nbsp;
 </p>
 
