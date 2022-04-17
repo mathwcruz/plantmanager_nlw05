@@ -3,12 +3,11 @@
   <h1 align="center">PlantManager</p>
 </p>
 
-## <p><h2 align="center">A mobile application that allows you to control your plants watering</h2> </p>
-
+<h3 align="center">A mobile application that allows you to control your plants watering</h3>
 
 <p align="center">
   <a href="#demonstration-of-the-application">Demonstration of the application</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#star-features">Features</a>&nbsp;&nbsp;&nbsp;
+  <a href="#star-features">Features</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#rocket-technologies-used">Technologies used</a>&nbsp;&nbsp;&nbsp;
 </p>
 
@@ -20,9 +19,7 @@
 
 <p>&nbsp;</p>
 
-<h3 align="center"> 
-	 Application status: Finalized ✔️
-</h3>
+<h4 align="center">Application status: Finalized ✔️</h4>
 
 <p>&nbsp;</p>
 
@@ -48,7 +45,7 @@
 
 <p>&nbsp;</p>
 
-<h3 align="center">One of the first mobile applications I developed. I really enjoyed getting to know this ecosystem, I didn't have so many difficulties because as I have experience with React, the use of React Native was not a big obstacle, looking forward to the next mobile applications</h3>
+<p align="center">One of the first mobile applications I developed. I really enjoyed getting to know this ecosystem, I didn't have so many difficulties because as I have experience with React, the use of React Native was not a big obstacle, looking forward to the next mobile applications</p>
 
 <p>&nbsp;</p>
 
@@ -63,4 +60,4 @@
 [![Gmail Badge](https://img.shields.io/badge/-matheuswachcruz@gmail.com-c14438?style=flat-square&logo=Gmail&logoColor=white&link=mailto:matheuswachcruz@gmail.com)](mailto:matheuswachcruz@gmail.com)
 <p>&nbsp;</p>
 
-### <p> <h2 align="center">Another application developed by Matheus da Cruz 👨‍💻 </h2> </p>
+<h2 align="center">Another application developed by Matheus da Cruz 👨‍💻 </h2>
