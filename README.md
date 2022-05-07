@@ -17,11 +17,7 @@
   <img src="./.github/demonstration.gif" width="300px"/>
 </p>
 
-<p>&nbsp;</p>
-
 <h4 align="center">Application status: Finalized ✔️</h4>
-
-<p>&nbsp;</p>
 
 ## :star: Features
 - [x] User identification
@@ -43,11 +39,7 @@
 <img src="https://xnrzwkuslogyvxcfkyyh.supabase.in/storage/v1/object/sign/projects-technologies-icons/lottie_icon.svg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJwcm9qZWN0cy10ZWNobm9sb2dpZXMtaWNvbnMvbG90dGllX2ljb24uc3ZnIiwiaWF0IjoxNjQ0OTY2NjA0LCJleHAiOjE5NjAzMjY2MDR9._bATRNw4NHTrysRsFKA0xqiFRJYXK06tGK4aRRwHBIs" alt="lottie" width="70" height="70"/>
 </p>
 
-<p>&nbsp;</p>
-
 <p align="center">One of the first mobile applications I developed. I really enjoyed getting to know this ecosystem, I didn't have so many difficulties because as I have experience with React, the use of React Native was not a big obstacle, looking forward to the next mobile applications</p>
-
-<p>&nbsp;</p>
 
 ### Autor
 
@@ -58,6 +50,3 @@
 
 [![Linkedin Badge](https://img.shields.io/badge/-Matheus-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/matheus-cruz-frontend/)](https://www.linkedin.com/in/matheus-cruz-frontend/) 
 [![Gmail Badge](https://img.shields.io/badge/-matheuswachcruz@gmail.com-c14438?style=flat-square&logo=Gmail&logoColor=white&link=mailto:matheuswachcruz@gmail.com)](mailto:matheuswachcruz@gmail.com)
-<p>&nbsp;</p>
-
-<h2 align="center">Another application developed by Matheus da Cruz 👨‍💻 </h2>
