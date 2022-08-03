@@ -14,7 +14,7 @@
 # Demonstration of the application
 
 <p align="center">
-  <img src="./.github/demonstration.gif" width="300px"/>
+  <img src="./.github/demonstration.gif" width="30%"/>
 </p>
 
 <h4 align="center">Application status: Finalized ✔️</h4>
